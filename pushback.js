@@ -186,7 +186,6 @@
 		return {
 			routes: routes,
 			controllers: controllers,
-			services: services,
 			start: function() {
 				$(document).on(views.templates.loaded, function() {
 					$(window).trigger('hashchange');
