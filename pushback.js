@@ -162,10 +162,19 @@
 			}) ();
 
 			var show = function(view, controller, service, param) {
-				controller(function(data) {
-					var template = templates.get(view);
-					$(targetSelector).html(_.template(template, data));
-				}, service, param);
+				var afterRetrieve = controller();
+
+				if(typeof service === 'function') {
+					service();
+					if(afterRetrieve) afterRetrieve();
+				} else {
+					services.retrieve(service, param, function(data) {
+						var template = templates.get(view);
+						$(targetSelector).html(_.template(template, data))
+
+						afterRetrieve(data);
+					});
+				}
 			};
 
 			return {
