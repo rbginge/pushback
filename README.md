@@ -69,21 +69,20 @@ Using the template engine packaged with lo-dash (and underscore) write your temp
 
 ```javascript
 	pushback.controllers.
-		add('DefaultCtrl', function(process, myOwnLibraryFn, param) {
-	    		// No service here. Do something else...
+		add('DefaultCtrl', function() { // Called before service retrieval
 	    		myOwnLibraryFn();
 		}).
 
-		add('ArticleListCtrl', function(process, service, param) {
-			pushback.services.retrieve(service, param, function(data) {
-				process(data);
-			});
+		add('ArticleListCtrl', function() {  // Called before service retrieval
+			
 		}).
 
-		add('ArticleDetailCtrl', function(process, service, param) {
-			pushback.services.retrieve(service, param, function(data) {
-				process(data);
-			});
+		add('ArticleDetailCtrl', function() {  // Called before service retrieval
+			// Return function to be called after service retrieval
+			return function(data) {
+				data.add.another.property = 'val';
+				myOwnLibraryFn(data.someproperty);
+			};
 		});
 ```
 
