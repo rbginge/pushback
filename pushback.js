@@ -162,17 +162,17 @@
 			}) ();
 
 			var show = function(view, controller, service, param) {
-				var afterRetrieve = controller();
+				var afterShow = controller();
 
 				if(typeof service === 'function') {
 					service();
-					if(afterRetrieve) afterRetrieve();
+					if(afterShow) afterShow();
 				} else {
 					services.retrieve(service, param, function(data) {
 						var template = templates.get(view);
 						$(targetSelector).html(_.template(template, data))
 
-						afterRetrieve(data);
+						afterShow(data);
 					});
 				}
 			};
