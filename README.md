@@ -23,7 +23,7 @@ Using the template engine packaged with lo-dash (and underscore) write your temp
   <!-- /assets/partials/articleList.jst -->
   <ul>
   <% _.forEach(posts, function(post) { %>
-    <li><a href="#/news<%- post.id %>"><%- post.title %></a></li>
+    <li><a href="#/news/<%- post.id %>"><%- post.title %></a></li>
   <% }); %>
   </ul>
 ```
@@ -65,7 +65,7 @@ Using the template engine packaged with lo-dash (and underscore) write your temp
 	]);
 ```
 
-#### Add some articles
+#### Add some controllers
 
 ```javascript
 	pushback.controllers.
