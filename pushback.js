@@ -18,7 +18,7 @@
 				_.forEach(register, function(route, key) {
 					if(found) return;
 
-					var match = (new RegExp('^' + key.replace(/\//ig,'\\/').replace(':param','(\\d|\\w+)') + '\\/?$', 'ig')).exec(hash);
+					var match = (new RegExp('^' + key.replace(/\//ig,'\\/').replace(':param','([\\-\\d\\w]+)') + '\\/?$', 'ig')).exec(hash);
 
 					if(match) {
 						register[found = key].param = match[1];
